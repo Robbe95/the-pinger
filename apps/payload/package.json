@@ -1,0 +1,50 @@
+{
+  "name": "next-latest-starter",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev -p 8000",
+    "devturbo": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "lint": "eslint",
+    "ci": "payload migrate && pnpm build",
+    "generate:types": "payload generate:types",
+    "generate:schema": "payload-graphql generate:schema",
+    "standalone-script": "node ./src/scripts/standalone-script.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@payloadcms/db-mongodb": "3.0.0-beta.65",
+    "@payloadcms/db-postgres": "3.0.0-beta.65",
+    "@payloadcms/next": "3.0.0-beta.65",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.65",
+    "@payloadcms/richtext-slate": "3.0.0-beta.65",
+    "@payloadcms/ui": "3.0.0-beta.65",
+    "@trpc/server": "^10.45.2",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
+    "cross-env": "^7.0.3",
+    "graphql": "^16.8.2",
+    "install": "^0.13.0",
+    "next": "15.0.0-canary.58",
+    "payload": "3.0.0-beta.65",
+    "payload-oauth2": "^0.0.11",
+    "react": "19.0.0-rc-6230622a1a-20240610",
+    "react-dom": "19.0.0-rc-6230622a1a-20240610",
+    "sharp": "0.32.6",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@payloadcms/graphql": "3.0.0-beta.65",
+    "@types/node": "^20.14.9",
+    "@types/react": "npm:types-react@19.0.0-rc.0",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.0",
+    "@wisemen/eslint-config-vue": "^0.1.4",
+    "eslint": "^9.7.0",
+    "eslint-config-next": "15.0.0-rc.0",
+    "typescript": "5.5.3"
+  }
+}
