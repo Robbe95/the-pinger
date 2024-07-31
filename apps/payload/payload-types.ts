@@ -12,14 +12,9 @@ export interface Config {
   };
   collections: {
     users: User;
-    addresses: Address;
     media: Media;
-    pages: Page;
-    posts: Post;
-    brands: Brand;
-    categories: Category;
-    products: Product;
-    orders: Order;
+    routeGroups: RouteGroup;
+    pings: Ping;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -49,7 +44,6 @@ export interface UserAuthOperations {
 export interface User {
   id: string;
   role: 'user' | 'admin' | 'editor' | 'developer';
-  addresses?: (string | Address)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -60,26 +54,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "addresses".
- */
-export interface Address {
-  id: string;
-  label: string;
-  street: string;
-  number: string;
-  box?: string | null;
-  postal_code: string;
-  city: string;
-  region?: string | null;
-  country: string;
-  email?: string | null;
-  phone?: string | null;
-  type?: ('billing' | 'shipping')[] | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -102,87 +76,33 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "routeGroups".
  */
-export interface Page {
+export interface RouteGroup {
   id: string;
-  title: string;
-  slug?: string | null;
-  layout?: ImageTextBlock[] | null;
+  name: string;
+  repository: string;
+  routes?:
+    | {
+        url: string;
+        enviroment: string;
+        pings?: (string | Ping)[] | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ImageTextBlock".
+ * via the `definition` "pings".
  */
-export interface ImageTextBlock {
-  image: string | Media;
-  title: string;
-  text: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'image-text';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
+export interface Ping {
   id: string;
-  title?: string | null;
-  content?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "brands".
- */
-export interface Brand {
-  id: string;
-  title?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  title?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: string;
-  title: string;
-  description?: string | null;
-  price: number;
-  images?: (string | Media)[] | null;
-  categories?: (string | Category)[] | null;
-  brand?: (string | null) | Brand;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders".
- */
-export interface Order {
-  id: string;
-  user: string | User;
-  products: (string | Product)[];
-  status: 'cart' | 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
-  deliveryAddress: string | Address;
-  shippingAddress: string | Address;
-  remarks?: string | null;
-  orderedAt?: string | null;
+  isSuccess?: boolean | null;
+  timestamp?: string | null;
+  responseTimeInMs?: number | null;
+  url?: string | null;
   updatedAt: string;
   createdAt: string;
 }

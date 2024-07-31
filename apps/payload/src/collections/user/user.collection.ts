@@ -36,12 +36,6 @@ export const userCollection: CollectionConfig = {
       required: true,
       type: 'select',
     },
-    {
-      hasMany: true,
-      name: 'addresses',
-      relationTo: 'addresses',
-      type: 'relationship',
-    },
   ],
   slug: 'users',
 }

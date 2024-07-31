@@ -3,8 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { mediaCollections } from '@payload/collections/media/media.collections'
-import { pageCollections } from '@payload/collections/pages/page.collections'
-import { productCollections } from '@payload/collections/product/product.collections'
+import { pingCollections } from '@payload/collections/ping/ping.collections'
 import { userCollections } from '@payload/collections/user/user.collections'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -40,8 +39,7 @@ export default buildConfig({
   collections: [
     ...userCollections,
     ...mediaCollections,
-    ...pageCollections,
-    ...productCollections,
+    ...pingCollections,
   ],
   cors: [
     'http://localhost:3000',

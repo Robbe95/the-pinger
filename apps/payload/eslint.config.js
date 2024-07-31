@@ -11,6 +11,7 @@ export default [
     ignores: [
       '**/app/',
       '**/payload-types.ts',
+      '**/drizzle/',
     ],
   },
 ]
